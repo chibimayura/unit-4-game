@@ -1,9 +1,82 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>RPG game</title>
+	<title>Pokemon Battle</title>
+	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	
 </head>
 <body>
-	
+	<header>
+		<h1>Pokemon Battles</h1>
+	</header>
+
+	<div id="container">
+		<div class="row">
+			<section class="col-sm-12">
+				<div id="characterSelection">Select your Starter Pokemon:</div>
+				<div>
+					<img src="assets/images/bulbasaur.png" alt="bulbasaur" data-name="bulbasaur" data-health="90" data-atk="15">
+					<img src="assets/images/charmander.png" alt="charmander" data-name="charmander" data-health="78" data-atk="20">
+					<img src="assets/images/squirtle.png" alt="squirtle" data-name="squirtle" data-health="88" data-atk="18">
+					<img src="assets/images/pikachu.png" alt="pikachu" data-name="pikachu" data-health="70" data-atk="22">
+				</div>
+			</section>
+		</div>
+		<div class="row">
+			<section class="col-sm-4">
+				<div>Your Pokemon:
+					<div class="battleGround yourPokemon">
+					<!-- <img src="assets/images/charmander.png" alt="charmander"> -->
+					</div>
+
+					<div class="progress yourHealthBar">
+						<div class="progress-bar bg-success" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
+				</div>
+			</section>
+
+			<section class="col-sm-4">
+				<div>Menu: 
+					<div class="battleGround">
+						<ul>
+							<li>
+								<button value="attack">Attack</button>
+							</li>
+							<li>
+								<button value="start">Start</button>
+							</li>
+							<li>
+								<button value="restart">Restart</button>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</section>
+
+			<section class="col-sm-4">
+				<div>Your Rival:
+					<!-- <img src="assets/images/charmander.png" alt="charmander"> -->
+					<div class="battleGround rivalPokemon">
+					</div>
+
+					<div class="progress rivalHealthBar">
+						<div class="progress-bar bg-success" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
+				</div>
+			</section>
+		</div>
+
+		<div class="row">
+			<section class="dialogue dialogue-style">Select a pokemon</section>
+		</div>
+	</div>
+
+	<script
+	src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+	<script src="assets/javascript/game.js"></script>
+
 </body>
 </html>
