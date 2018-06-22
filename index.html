@@ -16,7 +16,7 @@
 		<div class="row">
 			<section class="col-sm-12">
 				<div id="characterSelection">Select your Starter Pokemon:</div>
-				<div>
+				<div id="characters">
 					<img src="assets/images/bulbasaur.png" alt="bulbasaur" data-name="bulbasaur" data-health="90" data-atk="15">
 					<img src="assets/images/charmander.png" alt="charmander" data-name="charmander" data-health="78" data-atk="20">
 					<img src="assets/images/squirtle.png" alt="squirtle" data-name="squirtle" data-health="88" data-atk="18">
@@ -28,11 +28,10 @@
 			<section class="col-sm-4">
 				<div>Your Pokemon:
 					<div class="battleGround yourPokemon">
-					<!-- <img src="assets/images/charmander.png" alt="charmander"> -->
 					</div>
 
 					<div class="progress yourHealthBar">
-						<div class="progress-bar bg-success" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+						<div class="progress-bar yourHP" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
 					</div>
 				</div>
 			</section>
@@ -42,13 +41,10 @@
 					<div class="battleGround">
 						<ul>
 							<li>
-								<button value="attack">Attack</button>
+								<button id="attack">Attack</button>
 							</li>
 							<li>
-								<button value="start">Start</button>
-							</li>
-							<li>
-								<button value="restart">Restart</button>
+								<button id="restart">Restart</button>
 							</li>
 						</ul>
 					</div>
@@ -57,12 +53,11 @@
 
 			<section class="col-sm-4">
 				<div>Your Rival:
-					<!-- <img src="assets/images/charmander.png" alt="charmander"> -->
 					<div class="battleGround rivalPokemon">
 					</div>
 
 					<div class="progress rivalHealthBar">
-						<div class="progress-bar bg-success" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+						<div class="progress-bar rivalHP" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
 					</div>
 				</div>
 			</section>

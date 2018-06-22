@@ -1,17 +1,27 @@
-var hP, atkP, catkP, rivalHP, playerSelect;
+var hP, currentHP,atkP, catkP, rivalHP, rivalCurrentHP, playerSelect, rivalPokeName, yourPokeName;
 
-var charSelect = false;
-var rivalSelect = false;
+var atkMultiplier = 1.5;
+var rivalCount = 3;
+
+var charPokeSelect = false;
+var rivalPokeSelect = false;
 
 var userPoke = $(".yourPokemon");
 var rivalPoke = $(".rivalPokemon");
 var textDialogue = $(".dialogue");
 var selectionText = $("#characterSelection");
-var yourHealthBar = $(".yourHealthBar");
-var rivalHealthBar = $(".rivalHealthBar");
+var yourHealthDisplay = $(".yourHealthBar");
+var rivalHealthDisplay = $(".rivalHealthBar");
+var yourHPBar = $(".yourHP");
+var rivalHPBar = $(".rivalHP");
 
-yourHealthBar.hide();
-rivalHealthBar.hide();
+var attackButton = $("#attack");
+var restartButton = $("#restart");
+
+yourHealthDisplay.hide();
+rivalHealthDisplay.hide();
+attackButton.hide();
+restartButton.hide();
 
 var characters = [
 					{
@@ -40,18 +50,86 @@ $(document).on('click', 'img', function(){
 	playerSelect = $(this);
 
 	//make sure player selects a pokemon and after they select a pokemon they can select a rival they want to battle
-	if(!charSelect){
+	if(!charPokeSelect){
+		charPokeSelect = true;
+		hP = parseInt(playerSelect.attr("data-health"));
+		yourPokeName = playerSelect.attr("data-name");
+		currentHP = hP;
+		atkP = parseInt(playerSelect.attr("data-atk"));
+
 		$('img').addClass('red');
 		playerSelect.addClass('green');
 		playerSelect.appendTo(userPoke);
-		charSelect = true;
 		selectionText.text("Select rival Pokemon you would like to battle");
-		yourHealthBar.show();
+		yourHealthDisplay.show();
+		yourHPBar.text(hP);
+	}else if(charPokeSelect && !rivalPokeSelect){
+		rivalPokeSelect = true;
+		rivalHP = parseInt(playerSelect.attr("data-health"));
+		rivalPokeName = playerSelect.attr("data-name");
+		rivalCurrentHP = rivalHP;
+		catkP = parseInt(playerSelect.attr("data-atk"));
 
-	}else if(charSelect && !rivalSelect){
 		textDialogue.text("Begin your battle");
 		playerSelect.appendTo(rivalPoke);
-		rivalSelect = true;
-		rivalHealthBar.show();
+		rivalHealthDisplay.show();
+		attackButton.show();
+		rivalHPBar.css("background-color", "#00ff00");
+		rivalHPBar.text(rivalHP);
+		rivalHPBar.css("width",  "100%");
 	}
 });
+
+$(document).on('click', '#attack', function(){
+	if(currentHP > catkP && rivalCurrentHP > atkP){
+		var rivalHPPercent, yourHPPercent;
+		currentHP -= catkP;
+		rivalCurrentHP -= atkP;
+		atkP = parseInt(atkP * atkMultiplier);
+
+		yourHPBar.text(hP);
+		rivalHPBar.text(rivalHP);
+
+		yourHPPercent = (currentHP/hP)*100;
+		rivalHPPercent = (rivalCurrentHP/rivalHP)*100;
+
+		if(yourHPPercent < 25 || rivalHPPercent < 25){
+			if(rivalHPPercent < 25){
+				rivalHPBar.css("background-color", "#ff0000");
+			}
+			if(yourHPPercent < 25){
+				yourHPBar.css("background-color", "#ff0000");
+			}
+		}
+
+		yourHPBar.css("width", yourHPPercent + "%");
+		rivalHPBar.css("width", rivalHPPercent + "%");
+
+		yourHPBar.text(currentHP);
+		rivalHPBar.text(rivalCurrentHP);
+
+		textDialogue.text("Your Pokemon, " + yourPokeName + " does " + atkP + " dmg to " + rivalPokeName + ".\n\n Your rival's pokemon, " + rivalPokeName + " does " + catkP + " dmg to " + yourPokeName + ".");
+
+	}else if(rivalCurrentHP <= atkP && rivalCount >= 1){
+		attackButton.hide();
+		rivalCount--;
+		rivalPokeSelect = false;
+
+		rivalPoke.empty();
+		rivalHealthDisplay.hide();
+		textDialogue.text("Your rival's pokemon, " + rivalPokeName + " has fainted.\n\n Select a new Pokemon to battle");
+	}else if(currentHP < catkP && rivalCurrentHP > atkP){
+		userPoke.empty();
+		yourHealthDisplay.hide();
+		textDialogue.text("Your pokemon " + yourPokeName + " has blacked out. You have lost the battle!");
+		restartButton.show();
+		attackButton.hide();
+	}
+	if (rivalCount < 1) {
+		restartButton.show();
+	}
+});
+
+$(document).on('click', '#restart', function(){
+	location.reload();
+})
