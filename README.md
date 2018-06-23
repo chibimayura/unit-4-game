@@ -9,4 +9,4 @@ Rules:
 2. Choose one rival pokemon to battle.
 3. You win once all rival pokemon has been defeated!
 
-Click <a href="">here</a> to play the game!
+Click <a href="https://chibimayura.github.io/unit-4-game/">here</a> to play the game!
