@@ -1,5 +1,6 @@
 body {
 	background: url("../../assets/images/bg.jpg") no-repeat center center fixed;
+	background-color: #79caf9;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
