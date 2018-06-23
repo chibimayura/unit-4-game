@@ -18,10 +18,17 @@ var rivalHPBar = $(".rivalHP");
 var attackButton = $("#attack");
 var restartButton = $("#restart");
 
+var openingSong = new Audio("assets/sounds/opening.mp3");
+var victorySong = new Audio("assets/sounds/victory.mp3");
+var endSong = new Audio("assets/sounds/ending.mp3");
+var battleSong = new Audio("assets/sounds/battle.mp3");
+
 yourHealthDisplay.hide();
 rivalHealthDisplay.hide();
 attackButton.hide();
 restartButton.hide();
+
+openingSong.play();
 
 var characters = [
 					{
@@ -48,6 +55,7 @@ var characters = [
 
 $(document).on('click', 'img', function(){
 	playerSelect = $(this);
+	battleSong = new Audio("assets/sounds/battle.mp3");
 
 	//make sure player selects a pokemon and after they select a pokemon they can select a rival they want to battle
 	if(!charPokeSelect){
@@ -64,6 +72,9 @@ $(document).on('click', 'img', function(){
 		yourHealthDisplay.show();
 		yourHPBar.text(hP);
 	}else if(charPokeSelect && !rivalPokeSelect){
+		openingSong.pause();
+		victorySong.pause();
+		battleSong.play();
 		rivalPokeSelect = true;
 		rivalHP = parseInt(playerSelect.attr("data-health"));
 		rivalPokeName = playerSelect.attr("data-name");
@@ -81,6 +92,7 @@ $(document).on('click', 'img', function(){
 });
 
 $(document).on('click', '#attack', function(){
+	victorySong = new Audio("assets/sounds/victory.mp3");
 	if(currentHP > catkP && rivalCurrentHP > atkP){
 		var rivalHPPercent, yourHPPercent;
 		currentHP -= catkP;
@@ -114,11 +126,14 @@ $(document).on('click', '#attack', function(){
 		attackButton.hide();
 		rivalCount--;
 		rivalPokeSelect = false;
+		victorySong.play();
+		battleSong.pause();
 
 		rivalPoke.empty();
 		rivalHealthDisplay.hide();
 		textDialogue.text("Your rival's pokemon, " + rivalPokeName + " has fainted.\n\n Select a new Pokemon to battle");
 	}else if(currentHP < catkP && rivalCurrentHP > atkP){
+		battleSong.pause();
 		userPoke.empty();
 		yourHealthDisplay.hide();
 		textDialogue.text("Your pokemon " + yourPokeName + " has blacked out. You have lost the battle!");
@@ -127,6 +142,10 @@ $(document).on('click', '#attack', function(){
 	}
 	if (rivalCount < 1) {
 		restartButton.show();
+		battleSong.pause();
+		victorySong.pause();
+		endSong.play();
+		textDialogue.text("Your rival's pokemon, " + rivalPokeName + " has fainted. You have defeated all your opponents!!");
 	}
 });
 
