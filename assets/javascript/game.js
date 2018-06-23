@@ -1,19 +1,19 @@
 var hP, currentHP,atkP, catkP, rivalHP, rivalCurrentHP, playerSelect, rivalPokeName, yourPokeName;
 
-var atkMultiplier = 1.5;
-var rivalCount = 3;
+var atkMultiplier = 1.5;	//multiplies the user's pokemon's attack power every round
+var rivalCount = 3;			//number of opponents the user has to face
 
-var charPokeSelect = false;
-var rivalPokeSelect = false;
+var charPokeSelect = false;		//boolean that checks to see if the user selected a pokemon or not
+var rivalPokeSelect = false;	//boolean that checks to see if the user selected a pokemon to battle
 
-var userPoke = $(".yourPokemon");
-var rivalPoke = $(".rivalPokemon");
-var textDialogue = $(".dialogue");
-var selectionText = $("#characterSelection");
-var yourHealthDisplay = $(".yourHealthBar");
-var rivalHealthDisplay = $(".rivalHealthBar");
-var yourHPBar = $(".yourHP");
-var rivalHPBar = $(".rivalHP");
+var userPoke = $(".yourPokemon");	//targets a class yourPokemon 
+var rivalPoke = $(".rivalPokemon");	//targets a class rivalPokemon 
+var textDialogue = $(".dialogue");	//targets a class dialogue 
+var selectionText = $("#characterSelection");	//targets an id characterSelection 
+var yourHealthDisplay = $(".yourHealthBar");	//targets a class yourHealthBar 
+var rivalHealthDisplay = $(".rivalHealthBar");	//targets a class rivalHealthBar 
+var yourHPBar = $(".yourHP");		// targets a class yourHP
+var rivalHPBar = $(".rivalHP");		//targets a class rivaHP
 
 var attackButton = $("#attack");
 var restartButton = $("#restart");
@@ -97,7 +97,6 @@ $(document).on('click', '#attack', function(){
 		var rivalHPPercent, yourHPPercent;
 		currentHP -= catkP;
 		rivalCurrentHP -= atkP;
-		atkP = parseInt(atkP * atkMultiplier);
 
 		yourHPBar.text(hP);
 		rivalHPBar.text(rivalHP);
@@ -121,6 +120,8 @@ $(document).on('click', '#attack', function(){
 		rivalHPBar.text(rivalCurrentHP);
 
 		textDialogue.text("Your Pokemon, " + yourPokeName + " does " + atkP + " dmg to " + rivalPokeName + ".\n\n Your rival's pokemon, " + rivalPokeName + " does " + catkP + " dmg to " + yourPokeName + ".");
+
+		atkP = parseInt(atkP * atkMultiplier);
 
 	}else if(rivalCurrentHP <= atkP && rivalCount >= 1){
 		attackButton.hide();

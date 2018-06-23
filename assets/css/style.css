@@ -20,6 +20,7 @@ h1 {
 	float: left;
 	height: 4%;
 	width: 4%;
+	cursor: pointer;
 }
 
 div {
@@ -56,6 +57,16 @@ img {
 	background-color: #ffffffaa;
 }
 
+img:hover, button:hover {
+	border-color: #ffff0055;
+	background-color: #ffffccaa;
+}
+
+img:hover {
+	/*cursor: wait;*/
+	cursor: url("../images/pokeballCur.png"), auto;
+}
+
 .progress {
 	width: 50%;
 	height: 25px;
@@ -82,11 +93,6 @@ img {
 	border-color: #00cc00;
 	border-width: 10px;
 	background-color: #ccffcc;
-}
-
-img:hover, button:hover {
-	border-color: #ffff0055;
-	background-color: #ffffccaa;
 }
 
 .battleGround{
