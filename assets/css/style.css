@@ -45,7 +45,8 @@ li {
 
 button {
 	width: 150px;
-	padding: 5px;
+	height: 50px;
+	padding: 20px 5px;
 }
 
 img {
@@ -57,13 +58,9 @@ img {
 	background-color: #ffffffaa;
 }
 
-img:hover, button:hover {
+img:hover {
 	border-color: #ffff0055;
 	background-color: #ffffccaa;
-}
-
-img:hover {
-	/*cursor: wait;*/
 	cursor: url("../images/pokeballCur.png"), auto;
 }
 
