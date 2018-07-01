@@ -22,6 +22,7 @@ var openingSong = new Audio("assets/sounds/opening.mp3");
 var victorySong = new Audio("assets/sounds/victory.mp3");
 var endSong = new Audio("assets/sounds/ending.mp3");
 var battleSong = new Audio("assets/sounds/battle.mp3");
+var selectSong, attackSong;
 
 yourHealthDisplay.hide();
 rivalHealthDisplay.hide();
@@ -56,9 +57,11 @@ var characters = [
 $(document).on('click', 'img', function(){
 	playerSelect = $(this);
 	battleSong = new Audio("assets/sounds/battle.mp3");
+	selectSong = new Audio("assets/sounds/select.wav");
 
 	//make sure player selects a pokemon and after they select a pokemon they can select a rival they want to battle
 	if(!charPokeSelect){
+		selectSong.play();
 		charPokeSelect = true;
 		hP = parseInt(playerSelect.attr("data-health"));
 		yourPokeName = playerSelect.attr("data-name");
@@ -71,9 +74,12 @@ $(document).on('click', 'img', function(){
 		selectionText.text("Select rival Pokemon you would like to battle");
 		yourHealthDisplay.show();
 		yourHPBar.text(hP);
+
+
 	}else if(charPokeSelect && !rivalPokeSelect){
 		openingSong.pause();
 		victorySong.pause();
+		selectSong.play();
 		battleSong.play();
 		rivalPokeSelect = true;
 		rivalHP = parseInt(playerSelect.attr("data-health"));
@@ -93,6 +99,9 @@ $(document).on('click', 'img', function(){
 
 $(document).on('click', '#attack', function(){
 	victorySong = new Audio("assets/sounds/victory.mp3");
+	attackSong = new Audio("assets/sounds/hit.wav");
+	attackSong.play();
+
 	if(currentHP > catkP && rivalCurrentHP > atkP){
 		var rivalHPPercent, yourHPPercent;
 		currentHP -= catkP;
