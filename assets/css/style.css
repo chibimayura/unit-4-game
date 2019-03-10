@@ -8,11 +8,12 @@ body {
 }
 
 h1 {
-	background-color: #000000aa;
+	background-color: rgba(40, 67, 83,1);
 	padding: 20px;
 	color: #ffffff;
 	font-size: 24px;
 	text-align: center;
+	font-weight: bolder;
 }
 
 #backbtn {
@@ -56,13 +57,13 @@ img {
 	padding: 10px;
 	border: 5px solid #1aa3ff;
 	margin: auto;
-	background-color: #ffffffaa;
+	background-color: rgba(255,255,255,0.8);
 }
 
-img:hover {
-	border-color: #ffff0055;
-	background-color: #ffffccaa;
-	cursor: url("../images/pokeballCur.png"), auto;
+.pkm:hover {
+	border-color: rgba(255, 240, 5, 0.8);
+	background-color: rgba(255, 252, 202, 0.5);
+	cursor: url("../images/pokeballCur.cur"), pointer;
 }
 
 .progress {
@@ -97,8 +98,8 @@ img:hover {
 	height: 300px;
 }
 
-.dialogue-style{
-	background-color: #ffffffaa;
+.dialogue{
+	background-color: #ffffff;
 	color: #000000;
 	font-size: 18px;
 	font-weight: bold;

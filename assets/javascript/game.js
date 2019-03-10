@@ -54,7 +54,7 @@ var characters = [
 					}
 				];
 
-$(document).on('click', 'img', function(){
+$(document).on('click', 'img.pkm', function(){
 	playerSelect = $(this);
 	battleSong = new Audio("assets/sounds/battle.mp3");
 	selectSong = new Audio("assets/sounds/select.wav");
